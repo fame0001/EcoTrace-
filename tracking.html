@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoTrace+ | Tracking</title>
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f8;}
+.container{display:flex;height:100vh;}
+.sidebar{width:220px;background:#14532d;color:white;padding:20px;}
+.logo{font-size:24px;font-weight:bold;margin-bottom:30px;cursor:pointer;}
+.menu button{width:100%;margin-bottom:10px;padding:10px;border:none;background:#166534;color:white;border-radius:6px;}
+.main{flex:1;padding:20px;}
+.card{background:white;border-radius:10px;padding:20px;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="sidebar">
+  <div class="logo" onclick="goPage('index.html')">🌿 EcoTrace+</div>
+  <div class="menu">
+    <button onclick="goPage('dashboard.html')">Dashboard</button>
+    <button onclick="goPage('analytics.html')">Analytics</button>
+    <button onclick="goPage('reports.html')">Reports</button>
+    <button onclick="goPage('tracking.html')">Tracking</button>
+    <button onclick="goPage('settings.html')">Settings</button>
+    <button onclick="goPage('support.html')">Support</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="card">
+    <h2>Tracking</h2>
+    <p>Track real-time waste, energy and water usage</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function goPage(p){window.location.href=p;}
+</script>
+</body>
+</html>

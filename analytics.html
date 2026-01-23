@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EcoTrace+ | Analytics</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #14532d;
+      color: white;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
+    .menu button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: none;
+      background: #166534;
+      color: white;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .menu button:hover {
+      background: #22c55e;
+    }
+
+    /* Main */
+    .main {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .topbar input {
+      padding: 8px;
+      width: 250px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo" onclick="goPage('index.html')">🌿 EcoTrace+</div>
+    <div class="menu">
+      <button onclick="goPage('dashboard.html')">Dashboard</button>
+      <button onclick="goPage('analytics.html')">Analytics</button>
+      <button onclick="goPage('reports.html')">Reports</button>
+      <button onclick="goPage('tracking.html')">Tracking</button>
+      <button onclick="goPage('settings.html')">Settings</button>
+      <button onclick="goPage('support.html')">Support</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <input type="text" placeholder="Search analytics..." />
+    </div>
+
+    <!-- Title -->
+    <div class="card">
+      <h2>Analytics Overview</h2>
+      <p>Detailed environmental performance analytics and insights</p>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid-2">
+      <div class="card">
+        <b>Carbon Emission Trend</b>
+        <canvas id="carbonChart"></canvas>
+      </div>
+
+      <div class="card">
+        <b>Energy Consumption</b>
+        <canvas id="energyChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function goPage(page) {
+    window.location.href = page;
+  }
+
+  new Chart(carbonChart, {
+    type: "line",
+    data: {
+      labels: ["Jan","Feb","Mar","Apr","May"],
+      datasets: [{
+        label: "CO₂ Emission",
+        data: [50, 45, 40, 35, 30],
+        borderColor: "green"
+      }]
+    }
+  });
+
+  new Chart(energyChart, {
+    type: "bar",
+    data: {
+      labels: ["Solar","Wind","Hydro","Grid"],
+      datasets: [{
+        label: "Energy Usage",
+        data: [40, 30, 20, 50],
+        backgroundColor: "#22c55e"
+      }]
+    }
+  });
+</script>
+
+</body>
+</html>
