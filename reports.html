@@ -2,47 +2,214 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EcoTrace+ | Reports</title>
+<title>Pricing | EcoTrace+</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#f4f6f8;}
-.container{display:flex;height:100vh;}
-.sidebar{width:220px;background:#14532d;color:white;padding:20px;}
-.logo{font-size:24px;font-weight:bold;margin-bottom:30px;cursor:pointer;}
-.menu button{width:100%;margin-bottom:10px;padding:10px;border:none;background:#166534;color:white;border-radius:6px;}
-.main{flex:1;padding:20px;}
-.card{background:white;border-radius:10px;padding:20px;}
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial;
+  background:linear-gradient(180deg,#dcfce7,#f0fdf4);
+}
+
+/* Layout */
+.container{
+  display:flex;
+  min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+  width:230px;
+  background:linear-gradient(180deg,#14532d,#166534);
+  color:white;
+  padding:20px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:30px;
+  cursor:pointer;
+}
+
+.menu button{
+  width:100%;
+  margin-bottom:10px;
+  padding:12px;
+  background:rgba(255,255,255,0.12);
+  border:none;
+  border-radius:10px;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  text-align:left;
+}
+
+.menu button:hover{
+  background:#22c55e;
+  color:#052e16;
+}
+
+/* Main */
+.main{
+  flex:1;
+  padding:40px;
+}
+
+/* Pricing */
+h1{
+  color:#14532d;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+  margin-top:40px;
+}
+
+.card{
+  background:white;
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 14px 32px rgba(0,0,0,.15);
+}
+
+.card h2{
+  color:#166534;
+}
+
+.price{
+  font-size:42px;
+  font-weight:bold;
+  color:#22c55e;
+  margin:20px 0;
+}
+
+.card p{
+  color:#374151;
+}
+
+button.subscribe{
+  margin-top:20px;
+  padding:14px;
+  width:100%;
+  border:none;
+  border-radius:999px;
+  background:#22c55e;
+  font-weight:bold;
+  font-size:15px;
+  color:#052e16;
+  cursor:pointer;
+}
+
+button.subscribe:hover{
+  background:#4ade80;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
 
-<div class="sidebar">
-  <div class="logo" onclick="goPage('index.html')">🌿 EcoTrace+</div>
-  <div class="menu">
-    <button onclick="goPage('dashboard.html')">Dashboard</button>
-    <button onclick="goPage('analytics.html')">Analytics</button>
-    <button onclick="goPage('reports.html')">Reports</button>
-    <button onclick="goPage('tracking.html')">Tracking</button>
-    <button onclick="goPage('settings.html')">Settings</button>
-    <button onclick="goPage('support.html')">Support</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo" onclick="goPage('dashboard.html')">🌿 EcoTrace+</div>
+    <div class="menu">
+      <button onclick="goPage('dashboard.html')">Dashboard</button>
+      <button onclick="goPage('analytics.html')">Analytics</button>
+      <button onclick="goPage('reports.html')">Reports</button>
+      <button onclick="goPage('tracking.html')">Tracking</button>
+      <button onclick="goPage('settings.html')">Settings</button>
+      <button onclick="goPage('support.html')">Support</button>
+      <button onclick="goPage('pricing.html')">Pricing</button>
+    </div>
   </div>
-</div>
 
-<div class="main">
-  <div class="card">
-    <h2>Reports</h2>
-    <ul>
-      <li>Monthly Environmental Report</li>
-      <li>Carbon Footprint Report</li>
-      <li>Energy Usage Summary</li>
-    </ul>
+  <!-- Main -->
+  <div class="main">
+
+    <h1>🌿 Choose Your ESG Plan</h1>
+
+    <div class="cards">
+
+      <div class="card">
+        <h2>Monthly</h2>
+        <div class="price">$9</div>
+        <p>Full ESG Dashboard<br>30 days access</p>
+        <button class="subscribe" onclick="subscribe('monthly')">Subscribe</button>
+      </div>
+
+      <div class="card">
+        <h2>Yearly</h2>
+        <div class="price">$99</div>
+        <p>Save 20%<br>365 days access</p>
+        <button class="subscribe" onclick="subscribe('yearly')">Subscribe</button>
+      </div>
+
+      <div class="card">
+        <h2>Lifetime</h2>
+        <div class="price">$299</div>
+        <p>One-time payment<br>Unlimited access</p>
+        <button class="subscribe" onclick="subscribe('lifetime')">Subscribe</button>
+      </div>
+
+    </div>
+
   </div>
-</div>
 
 </div>
 
-<script>
-function goPage(p){window.location.href=p;}
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDfqNxfG1zxo_tt8bsPrkTljcMzkDzf9i8",
+  authDomain: "ecotrace-8ba00.firebaseapp.com",
+  projectId: "ecotrace-8ba00"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.goPage = function(page){
+  window.location.href = page;
+}
+
+window.subscribe = async function(plan){
+  const user = auth.currentUser;
+  if(!user){
+    alert("Please login first");
+    return;
+  }
+
+  const now = new Date();
+  let endDate = null;
+
+  if(plan==="monthly"){
+    endDate = new Date(now.getTime() + 30*24*60*60*1000);
+  }
+  if(plan==="yearly"){
+    endDate = new Date(now.getTime() + 365*24*60*60*1000);
+  }
+
+  await setDoc(doc(db,"users",user.uid),{
+    email:user.email,
+    plan:plan,
+    planStart:new Date(),
+    planEnd:endDate,
+    active:true
+  });
+
+  alert("Subscription activated!");
+  window.location.href = "dashboard.html";
+}
 </script>
+
 </body>
 </html>
