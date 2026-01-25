@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pricing | EcoTrace+</title>
+<title>Reports | EcoTrace+</title>
 
 <style>
 body{
   margin:0;
   font-family:"Segoe UI",Arial;
-  background:linear-gradient(180deg,#dcfce7,#f0fdf4);
+  background:linear-gradient(180deg,#ecfdf5,#f0fdf4);
 }
 
-/* Layout */
+/* ===== Layout ===== */
 .container{
   display:flex;
   min-height:100vh;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
 .sidebar{
   width:230px;
   background:linear-gradient(180deg,#14532d,#166534);
@@ -50,62 +50,68 @@ body{
   color:#052e16;
 }
 
-/* Main */
+/* ===== Main ===== */
 .main{
   flex:1;
-  padding:40px;
+  padding:30px;
 }
 
-/* Pricing */
-h1{
+/* ===== Header ===== */
+.header{
+  font-size:22px;
+  font-weight:bold;
   color:#14532d;
+  margin-bottom:20px;
 }
 
-.cards{
+/* ===== Cards ===== */
+.grid-2{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  margin-bottom:20px;
+}
+
+.grid-3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:30px;
-  margin-top:40px;
+  gap:20px;
 }
 
 .card{
   background:white;
-  border-radius:22px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 14px 32px rgba(0,0,0,.15);
+  padding:22px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
 }
 
-.card h2{
+.card h3{
+  margin-top:0;
   color:#166534;
 }
 
-.price{
-  font-size:42px;
-  font-weight:bold;
-  color:#22c55e;
-  margin:20px 0;
+/* ===== Report List ===== */
+.report-item{
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:12px;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
 }
 
-.card p{
+.report-item b{
+  color:#14532d;
+}
+
+/* ===== Canvas Style ===== */
+.canvas-box{
+  font-size:13px;
+  line-height:1.6;
   color:#374151;
 }
 
-button.subscribe{
-  margin-top:20px;
-  padding:14px;
-  width:100%;
-  border:none;
-  border-radius:999px;
-  background:#22c55e;
-  font-weight:bold;
-  font-size:15px;
-  color:#052e16;
-  cursor:pointer;
-}
-
-button.subscribe:hover{
-  background:#4ade80;
+.canvas-box b{
+  color:#14532d;
 }
 </style>
 </head>
@@ -131,83 +137,121 @@ button.subscribe:hover{
   <!-- Main -->
   <div class="main">
 
-    <h1>🌿 Choose Your ESG Plan</h1>
+    <div class="header">📄 ESG Reports</div>
 
-    <div class="cards">
+    <!-- Top Section -->
+    <div class="grid-2">
 
+      <!-- Reports -->
       <div class="card">
-        <h2>Monthly</h2>
-        <div class="price">$9</div>
-        <p>Full ESG Dashboard<br>30 days access</p>
-        <button class="subscribe" onclick="subscribe('monthly')">Subscribe</button>
+        <h3>Available Reports</h3>
+
+        <div class="report-item">
+          <b>Monthly Environmental Report</b><br>
+          Summary of emissions, waste, and resource usage.
+        </div>
+
+        <div class="report-item">
+          <b>Carbon Footprint Report</b><br>
+          Detailed CO₂ emission analysis aligned with ESG standards.
+        </div>
+
+        <div class="report-item">
+          <b>Energy Usage Summary</b><br>
+          Energy efficiency and consumption trends.
+        </div>
+
+        <div class="report-item">
+          <b>Water & Waste Management Report</b><br>
+          Resource conservation and recycling metrics.
+        </div>
       </div>
 
-      <div class="card">
-        <h2>Yearly</h2>
-        <div class="price">$99</div>
-        <p>Save 20%<br>365 days access</p>
-        <button class="subscribe" onclick="subscribe('yearly')">Subscribe</button>
+      <!-- Business Model Canvas (Strategic Value) -->
+      <div class="card canvas-box">
+        <h3>Strategic Value</h3>
+        <p>
+          <b>Value Proposition:</b><br>
+          Standardized ESG reports to support compliance, transparency, and sustainability goals.
+        </p>
+
+        <p>
+          <b>Customer Segments:</b><br>
+          Corporations, SMEs, ESG auditors, Sustainability officers.
+        </p>
+
+        <p>
+          <b>Revenue Streams:</b><br>
+          Subscription plans (Monthly / Yearly / Lifetime).
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom Section (Canvas 9 ช่อง) -->
+    <div class="grid-3">
+
+      <div class="card canvas-box">
+        <h3>Key Activities</h3>
+        <ul>
+          <li>ESG data aggregation</li>
+          <li>Report generation</li>
+          <li>Compliance monitoring</li>
+        </ul>
       </div>
 
-      <div class="card">
-        <h2>Lifetime</h2>
-        <div class="price">$299</div>
-        <p>One-time payment<br>Unlimited access</p>
-        <button class="subscribe" onclick="subscribe('lifetime')">Subscribe</button>
+      <div class="card canvas-box">
+        <h3>Key Resources</h3>
+        <ul>
+          <li>Cloud infrastructure</li>
+          <li>ESG reporting engine</li>
+          <li>Data visualization tools</li>
+        </ul>
+      </div>
+
+      <div class="card canvas-box">
+        <h3>Key Partners</h3>
+        <ul>
+          <li>Regulatory bodies</li>
+          <li>Environmental consultants</li>
+          <li>Technology providers</li>
+        </ul>
+      </div>
+
+      <div class="card canvas-box">
+        <h3>Channels</h3>
+        <ul>
+          <li>Web dashboard</li>
+          <li>PDF/Export reports</li>
+          <li>API integration</li>
+        </ul>
+      </div>
+
+      <div class="card canvas-box">
+        <h3>Customer Relationships</h3>
+        <ul>
+          <li>Self-service reporting</li>
+          <li>Automated ESG summaries</li>
+          <li>Dedicated support</li>
+        </ul>
+      </div>
+
+      <div class="card canvas-box">
+        <h3>Cost Structure</h3>
+        <ul>
+          <li>Data processing</li>
+          <li>Infrastructure costs</li>
+          <li>Platform maintenance</li>
+        </ul>
       </div>
 
     </div>
 
   </div>
-
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDfqNxfG1zxo_tt8bsPrkTljcMzkDzf9i8",
-  authDomain: "ecotrace-8ba00.firebaseapp.com",
-  projectId: "ecotrace-8ba00"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-window.goPage = function(page){
+<script>
+function goPage(page){
   window.location.href = page;
-}
-
-window.subscribe = async function(plan){
-  const user = auth.currentUser;
-  if(!user){
-    alert("Please login first");
-    return;
-  }
-
-  const now = new Date();
-  let endDate = null;
-
-  if(plan==="monthly"){
-    endDate = new Date(now.getTime() + 30*24*60*60*1000);
-  }
-  if(plan==="yearly"){
-    endDate = new Date(now.getTime() + 365*24*60*60*1000);
-  }
-
-  await setDoc(doc(db,"users",user.uid),{
-    email:user.email,
-    plan:plan,
-    planStart:new Date(),
-    planEnd:endDate,
-    active:true
-  });
-
-  alert("Subscription activated!");
-  window.location.href = "dashboard.html";
 }
 </script>
 
