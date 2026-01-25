@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Profile | EcoTrace+</title>
+<style>
+body{
+  font-family:Segoe UI;
+  background:linear-gradient(180deg,#dcfce7,#f0fdf4);
+  padding:50px;
+}
+.card{
+  max-width:420px;
+  margin:auto;
+  background:white;
+  padding:32px;
+  border-radius:24px;
+  box-shadow:0 14px 30px rgba(0,0,0,.15);
+}
+input,button{
+  width:100%;
+  padding:14px;
+  margin-top:14px;
+  border-radius:12px;
+}
+button{
+  background:#22c55e;
+  border:none;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>👤 User Profile</h2>
+  <input id="name" placeholder="Display Name">
+  <input id="email" disabled>
+  <button onclick="save()">Save Profile</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDfqNxfG1zxo_tt8bsPrkTljcMzkDzf9i8",
+  authDomain: "ecotrace-8ba00.firebaseapp.com",
+  projectId: "ecotrace-8ba00"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, async(user)=>{
+  if(!user){
+    location.href="login.html";
+    return;
+  }
+  email.value = user.email;
+
+  const snap = await getDoc(doc(db,"users",user.uid));
+  if(snap.exists()) name.value = snap.data().name;
+});
+
+window.save = async()=>{
+  const user = auth.currentUser;
+  await setDoc(doc(db,"users",user.uid),{
+    name:name.value,
+    email:user.email
+  });
+  alert("✅ Saved successfully");
+}
+</script>
+
+</body>
+</html>

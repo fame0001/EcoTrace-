@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login | EcoTrace+</title>
+<style>
+body{
+  font-family:Segoe UI,Arial;
+  background:linear-gradient(180deg,#dcfce7,#f0fdf4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.card{
+  background:white;
+  padding:32px;
+  width:360px;
+  border-radius:22px;
+  box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+input,button{
+  width:100%;
+  padding:14px;
+  margin-top:14px;
+  border-radius:12px;
+}
+button{
+  background:#22c55e;
+  border:none;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>🌿 EcoTrace+ Login</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDfqNxfG1zxo_tt8bsPrkTljcMzkDzf9i8",
+  authDomain: "ecotrace-8ba00.firebaseapp.com",
+  projectId: "ecotrace-8ba00"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = async()=>{
+  await signInWithEmailAndPassword(auth,email.value,password.value);
+  location.href="dashboard.html";
+}
+</script>
+</body>
+</html> -->
