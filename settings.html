@@ -2,43 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EcoTrace+ | Settings</title>
+<title>Settings | EcoTrace+</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#f4f6f8;}
-.container{display:flex;height:100vh;}
-.sidebar{width:220px;background:#14532d;color:white;padding:20px;}
-.logo{font-size:24px;font-weight:bold;margin-bottom:30px;cursor:pointer;}
-.menu button{width:100%;margin-bottom:10px;padding:10px;border:none;background:#166534;color:white;border-radius:6px;}
-.main{flex:1;padding:20px;}
-.card{background:white;border-radius:10px;padding:20px;}
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial;
+  background:linear-gradient(180deg,#ecfdf5,#f0fdf4);
+}
+
+.container{display:flex;min-height:100vh}
+
+/* Sidebar */
+.sidebar{
+  width:230px;
+  background:linear-gradient(180deg,#14532d,#166534);
+  color:white;
+  padding:20px;
+}
+.logo{font-size:24px;font-weight:bold;margin-bottom:30px;cursor:pointer}
+.menu button{
+  width:100%;margin-bottom:10px;padding:12px;
+  background:rgba(255,255,255,0.12);
+  border:none;border-radius:10px;color:white;
+  font-size:14px;cursor:pointer;text-align:left
+}
+.menu button:hover{background:#22c55e;color:#052e16}
+
+/* Main */
+.main{flex:1;padding:30px}
+.header{font-size:22px;font-weight:bold;color:#14532d;margin-bottom:20px}
+
+/* Card */
+.card{
+  background:white;padding:25px;border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);max-width:600px
+}
+
+/* Form */
+label{display:block;margin-top:18px;font-weight:bold;color:#14532d}
+input,select{
+  margin-top:6px;width:100%;padding:12px;
+  border-radius:10px;border:1px solid #d1d5db;font-size:14px
+}
+input:focus,select:focus{outline:none;border-color:#22c55e}
+small{color:#6b7280}
+
+/* Button */
+button.save{
+  margin-top:25px;padding:14px;width:100%;
+  background:#22c55e;border:none;border-radius:999px;
+  font-size:15px;font-weight:bold;color:#052e16;cursor:pointer
+}
+button.save:hover{background:#4ade80}
+
+/* ESG Box */
+.esg-box{
+  margin-top:25px;font-size:13px;background:#ecfdf5;
+  padding:15px;border-radius:14px;color:#065f46
+}
+
+/* Toast */
+.toast{
+  position:fixed;top:20px;right:20px;
+  padding:16px 20px;border-radius:14px;
+  font-weight:bold;color:white;
+  opacity:0;transform:translateY(-20px);
+  transition:.4s;z-index:9999
+}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{background:linear-gradient(135deg,#22c55e,#4ade80)}
+.toast.error{background:linear-gradient(135deg,#ef4444,#f87171)}
 </style>
 </head>
+
 <body>
 <div class="container">
 
-<div class="sidebar">
-  <div class="logo" onclick="goPage('index.html')">🌿 EcoTrace+</div>
-  <div class="menu">
-    <button onclick="goPage('dashboard.html')">Dashboard</button>
-    <button onclick="goPage('analytics.html')">Analytics</button>
-    <button onclick="goPage('reports.html')">Reports</button>
-    <button onclick="goPage('tracking.html')">Tracking</button>
-    <button onclick="goPage('settings.html')">Settings</button>
-    <button onclick="goPage('support.html')">Support</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo" onclick="goPage('dashboard.html')">🌿 EcoTrace+</div>
+    <div class="menu">
+      <button onclick="goPage('dashboard.html')">Dashboard</button>
+      <button onclick="goPage('analytics.html')">Analytics</button>
+      <button onclick="goPage('reports.html')">Reports</button>
+      <button onclick="goPage('tracking.html')">Tracking</button>
+      <button onclick="goPage('settings.html')">Settings</button>
+      <button onclick="goPage('support.html')">Support</button>
+      <button onclick="goPage('pricing.html')">Pricing</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">⚙ ESG System Settings</div>
+
+    <div class="card">
+      <label>Carbon Reduction Target (%)</label>
+      <input id="carbon" type="number" value="20">
+      <small>Annual CO₂ reduction goal</small>
+
+      <label>Waste Measurement Unit</label>
+      <select id="wasteUnit">
+        <option value="kg">kg</option>
+        <option value="ton">ton</option>
+      </select>
+
+      <label>Energy Unit</label>
+      <select id="energyUnit">
+        <option value="kWh">kWh</option>
+        <option value="MWh">MWh</option>
+      </select>
+
+      <label>Water Unit</label>
+      <select id="waterUnit">
+        <option value="Liter">Liter</option>
+        <option value="m3">Cubic Meter (m³)</option>
+      </select>
+
+      <label>Dashboard Theme</label>
+      <select id="theme">
+        <option value="light">Light (ESG Green)</option>
+        <option value="dark">Dark (Carbon Black)</option>
+      </select>
+
+      <button class="save" onclick="saveSettings()">💾 Save Settings</button>
+
+      <div class="esg-box">
+        <b>ESG Impact:</b><br>
+        These settings directly influence how environmental performance is measured,
+        reported, and aligned with sustainability goals.
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="main">
-  <div class="card">
-    <h2>Settings</h2>
-    <p>User preferences & system configuration</p>
-  </div>
-</div>
+<div id="toast" class="toast"></div>
 
-</div>
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDfqNxfG1zxo_tt8bsPrkTljcMzkDzf9i8",
+  authDomain: "ecotrace-8ba00.firebaseapp.com",
+  projectId: "ecotrace-8ba00",
+  storageBucket: "ecotrace-8ba00.firebasestorage.app",
+  messagingSenderId: "87765091380",
+  appId: "1:87765091380:web:fe6c34ec9d1c9ee7a8b661"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+function toast(msg,type){
+  const t=document.getElementById("toast");
+  t.textContent=msg;
+  t.className=`toast ${type} show`;
+  setTimeout(()=>t.classList.remove("show"),3000);
+}
+
+window.saveSettings = async ()=>{
+  const user = auth.currentUser;
+  if(!user){toast("กรุณาเข้าสู่ระบบใหม่","error");return;}
+
+  try{
+    await setDoc(doc(db,"settings",user.uid),{
+      carbon:+carbon.value,
+      wasteUnit:wasteUnit.value,
+      energyUnit:energyUnit.value,
+      waterUnit:waterUnit.value,
+      theme:theme.value,
+      updatedAt:new Date()
+    });
+    toast("✅ บันทึกข้อมูลสำเร็จ","success");
+  }catch(e){
+    toast("❌ บันทึกไม่สำเร็จ","error");
+  }
+}
+</script>
 
 <script>
-function goPage(p){window.location.href=p;}
+function goPage(p){window.location.href=p}
 </script>
+
 </body>
 </html>
