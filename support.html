@@ -2,44 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EcoTrace+ | Support</title>
+<title>Support | EcoTrace+</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#f4f6f8;}
-.container{display:flex;height:100vh;}
-.sidebar{width:220px;background:#14532d;color:white;padding:20px;}
-.logo{font-size:24px;font-weight:bold;margin-bottom:30px;cursor:pointer;}
-.menu button{width:100%;margin-bottom:10px;padding:10px;border:none;background:#166534;color:white;border-radius:6px;}
-.main{flex:1;padding:20px;}
-.card{background:white;border-radius:10px;padding:20px;}
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial;
+  background:linear-gradient(180deg,#ecfdf5,#f0fdf4);
+}
+
+/* Layout */
+.container{display:flex;min-height:100vh}
+
+/* Sidebar */
+.sidebar{
+  width:230px;
+  background:linear-gradient(180deg,#14532d,#166534);
+  color:white;
+  padding:20px;
+}
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:30px;
+  cursor:pointer;
+}
+.menu button{
+  width:100%;
+  margin-bottom:10px;
+  padding:12px;
+  background:rgba(255,255,255,0.12);
+  border:none;
+  border-radius:10px;
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  text-align:left;
+}
+.menu button:hover{
+  background:#22c55e;
+  color:#052e16;
+}
+
+/* Main */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+.header{
+  font-size:22px;
+  font-weight:bold;
+  color:#14532d;
+  margin-bottom:20px;
+}
+
+/* Card */
+.card{
+  background:white;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  max-width:900px;
+}
+
+/* Sections */
+.section{
+  margin-bottom:22px;
+}
+.section h3{
+  margin-bottom:8px;
+  color:#166534;
+}
+.section p{
+  color:#374151;
+  line-height:1.6;
+}
+
+/* ESG Badge */
+.badge{
+  display:inline-block;
+  padding:6px 12px;
+  background:#dcfce7;
+  color:#166534;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+  margin-right:6px;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
 
-<div class="sidebar">
-  <div class="logo" onclick="goPage('index.html')">🌿 EcoTrace+</div>
-  <div class="menu">
-    <button onclick="goPage('dashboard.html')">Dashboard</button>
-    <button onclick="goPage('analytics.html')">Analytics</button>
-    <button onclick="goPage('reports.html')">Reports</button>
-    <button onclick="goPage('tracking.html')">Tracking</button>
-    <button onclick="goPage('settings.html')">Settings</button>
-    <button onclick="goPage('support.html')">Support</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo" onclick="goPage('dashboard.html')">🌿 EcoTrace+</div>
+    <div class="menu">
+      <button onclick="goPage('dashboard.html')">Dashboard</button>
+      <button onclick="goPage('analytics.html')">Analytics</button>
+      <button onclick="goPage('reports.html')">Reports</button>
+      <button onclick="goPage('tracking.html')">Tracking</button>
+      <button onclick="goPage('settings.html')">Settings</button>
+      <button onclick="goPage('support.html')">Support</button>
+      <button onclick="goPage('pricing.html')">Pricing</button>
+    </div>
   </div>
-</div>
 
-<div class="main">
-  <div class="card">
-    <h2>Support</h2>
-    <p>Contact: support@ecotrace.com</p>
-    <p>FAQ & Help Center</p>
+  <!-- Main -->
+  <div class="main">
+
+    <div class="header">📘 ESG Governance & Support</div>
+
+    <div class="card">
+
+      <div class="section">
+        <h3>What is EcoTrace+?</h3>
+        <p>
+          EcoTrace+ is an ESG-compliant sustainability platform designed to help
+          organizations monitor, analyze, and improve their environmental performance
+          across carbon emissions, waste, energy, and water usage.
+        </p>
+      </div>
+
+      <div class="section">
+        <h3>ESG Coverage</h3>
+        <span class="badge">Environmental</span>
+        <span class="badge">Social</span>
+        <span class="badge">Governance</span>
+        <p>
+          The platform aligns with global ESG and sustainability frameworks,
+          enabling transparent reporting, responsible governance, and
+          data-driven environmental decision-making.
+        </p>
+      </div>
+
+      <div class="section">
+        <h3>Compliance & Framework</h3>
+        <p>
+          EcoTrace+ supports alignment with sustainability standards such as:
+        </p>
+        <ul>
+          <li>Carbon Footprint Accounting</li>
+          <li>Environmental Performance Indicators</li>
+          <li>Internal ESG Governance Policies</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Contact & Support</h3>
+        <p>
+          📧 Email: <b>fnapatsakan@gmail.com</b><br>
+          ⏱ Response Time: Within 24–48 business hours
+        </p>
+      </div>
+
+      <div class="section">
+        <h3>Data Governance</h3>
+        <p>
+          All data within EcoTrace+ is securely stored and managed to ensure
+          integrity, transparency, and audit-readiness for ESG reporting.
+        </p>
+      </div>
+
+    </div>
+
   </div>
-</div>
-
 </div>
 
 <script>
-function goPage(p){window.location.href=p;}
+function goPage(page){
+  window.location.href = page;
+}
 </script>
+
 </body>
 </html>
